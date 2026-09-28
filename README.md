@@ -27,6 +27,6 @@ Claude drafted the solutions and retelling, recomputed every answer, ran OCR on 
 
 Where to find it
 
-The LaTeX sources and PDFs are free on GitHub: [(https://github.com/leznikm8/Lady-s-Diary/tree/main)]. Use them in a classroom, print them for your children, or fix my mistakes.
+The LaTeX sources and PDFs are free on GitHub: [(https://github.com/leznikm8/Lady-s-Diary/)]. Use them in a classroom, print them for your children, or fix my mistakes.
 
 A magazine for women published advanced math problems for 136 years. The least we can do is make them readable again.
