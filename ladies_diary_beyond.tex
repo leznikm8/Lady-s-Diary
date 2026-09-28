@@ -1,0 +1,491 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{bandgreen}{RGB}{46,139,87}
+\definecolor{bandblue}{RGB}{30,100,190}
+\definecolor{bandamber}{RGB}{220,140,20}
+\definecolor{bandpink}{RGB}{210,70,140}
+\definecolor{bandpurple}{RGB}{110,50,160}
+
+\newcounter{prob}
+% \prob{label}{title}{source}
+\newcommand{\prob}[3]{\par\bigskip\refstepcounter{prob}\label{#1}%
+  \noindent\textbf{\theprob.\ #2}\hfill{\small\textit{#3}}\par\nopagebreak\smallskip}
+\newcommand{\ans}[2]{\par\smallskip\noindent\textbf{\ref{#1}.}\ #2}
+
+\newcommand{\band}[3]{%
+  \clearpage
+  \begin{tcolorbox}[colback=#1!12,colframe=#1,boxrule=1pt,arc=2pt]
+  {\Large\bfseries\color{#1} #2}\hfill{\large #3}
+  \end{tcolorbox}}
+
+\newtcolorbox{diarynote}[1]{colback=black!4,colframe=black!45,boxrule=0.6pt,
+  arc=2pt,fonttitle=\bfseries\small,title={#1},fontupper=\small}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\Huge\bfseries The Ladies' Diary\par}
+\vspace{0.4cm}
+{\LARGE Beyond A-level\par}
+\vspace{0.8cm}
+{\Large Thirty-four problems, 1709--1816,\\ in curves, numbers, the Earth and motion\par}
+\vspace{2cm}
+{\large\itshape A charming brisk maid has assur'd me and said,\\
+Since I'm such a fine mathematician,\\
+She will wed me---but on this condition.\par}
+\vspace{0.3cm}
+{\small John Landen, question 279\par}
+\vfill
+{\large Working draft\par}
+\end{titlepage}
+
+\section*{A word before the problems}
+
+By the 1740s the Diary's hardest questions had stopped being puzzles. John Landen, a
+land agent from Peterborough, set a question in verse about a lady's fortune and answered
+other people's with the calculus of fluxions. William Emerson signed himself
+\textit{Merones}. Thomas Simpson, a weaver's son who became professor of mathematics at
+Woolwich, signed himself \textit{Kubernetes}, \textit{Hurlothrumbo} and \textit{Patrick
+O'Cavanah}.\footnote{The identifications are Leybourn's own, in the index of names at the
+end of vol.~IV.} Sixty years later the same pages carried Peter Barlow and Olinthus
+Gregory on the line of quickest descent and the shape of the Earth. The Diary asked for no
+degree. It printed the best answer.
+
+The two earlier books in this series are for school pupils, and they leave out anything
+beyond A-level. This one collects what they left out. It keeps the mechanics:
+pendulums, rolling balls, hanging chains, falling bodies and water running out of a
+vessel. Astronomy still stays out, because it needs the tables of the day. Where the
+Diary asked the same thing twice, one version is here. Where a question depends on a
+figure that cannot be rebuilt with confidence from the words, it is not here.
+
+\subsection*{How to read the labels}
+
+Leybourn numbered the questions straight through his four volumes. Numbers up to 294
+come from volume~I (1704--1748); numbers from 1089 come from volume~IV (1802--1816). So
+\textit{Q276} and \textit{Q1162} need no volume. Prize questions carry the year Leybourn's
+index gives them. \textit{After Q1128} means the numbers or units have been changed; the
+answer given is then for the retelling. Chains, acres and the like are replaced by metres
+and hectares. Feet and inches stay where the Diary's value of gravity is in feet, and a
+few coins stay because the problem is about them.
+
+Answers are at the back, with the method the Diary used and, where it helps, a modern
+one. Two grey boxes at the end list what the Diary got wrong, and what it simply did
+differently.
+
+\subsection*{How this edition was made}
+This edition was prepared with the assistance of Claude, an AI model made by Anthropic. Under the editor's direction, Claude drafted the retellings, solutions, notes and introduction, recomputed every answer, ran optical character recognition on the source scans (using Tesseract), and typeset the text. Selection, editorial decisions and final responsibility for the text are the editor's.
+
+%================ CURVES ================
+\band{bandpurple}{Curves and solids}{}
+
+\prob{c-conoid}{The dictionary's conoid}{after Q169, by William Grimmett}
+A dictionary of the day stated that a hyperbolic conoid, the solid made by turning a
+hyperbola about its transverse axis, bears a fixed ratio to the cylinder that encloses it.
+Take the transverse axis to be $a$ and cut the conoid at a distance $x$ from its vertex.
+Find the true ratio. Is it fixed?
+
+\prob{c-road}{The road round the hill}{after Q1128, by John Bennett}
+A hill is a cone. A road leaves its foot and winds exactly once round it, climbing
+steadily, 1\,m up for every 6\,m along. It is 1,600\,m long and ends at a summer-house
+exactly half way up the hill. Find the radius of the hill's base.
+
+\prob{c-pond}{The pond traced by a point}{after the prize question for 1804, by Isaac Rowbottom}
+$P$ is the centre of a circle of radius $a$, and $AB$ a fixed diameter. From $P$ draw any
+line to the circle at $Q$. From $Q$ drop $QR$ at right angles to $AB$, and from $R$ drop
+$RS$ at right angles to $PQ$. As $Q$ goes round, $S$ traces the edge of a pond. The pond
+covers 12 hectares. Find $a$, and the greatest distance of the pond's edge from $AB$.
+
+\prob{c-bryhon}{The father's curved fence}{after Q1157, by W.~Z.}
+A father leaves a round field to his son and daughter. The fence between them runs from
+one end $A$ of a diameter $AB$ to the other. At a distance $x$ from $A$ along $AB$, the
+fence stands off the diameter by the length of the chord from $A$ to the circle at that
+point, less $x$. The son's share is worth \pounds30{,}000 more than the daughter's, and
+the land is worth \pounds5{,}000 a hectare. How large is the field?
+
+\prob{c-quadratrix}{The garden in the quadratrix}{Q1219, by William Watkins}
+$CA$ and $CB$ are radii of a quadrant, 10\,m long, at right angles. The radius $CB$ turns
+steadily about $C$ down to $CA$. In the same time a line parallel to $CA$ slides steadily
+from $B$ down to $CA$. Their crossing point traces the quadratrix of Dinostratus. A
+rectangular garden has one corner at $C$, two sides along $CA$ and $CB$, and the opposite
+corner on the quadratrix. Make it as large as possible.
+
+\prob{c-dotchen}{Chord less abscissa}{Q1248, by J.~A.~Dotchen}
+$AB$ is the diameter of a semicircle, of length $a$. $D$ is any point of $AB$, and the
+perpendicular at $D$ meets the circle at $E$. On $DE$ take $DP$ equal to the chord $AE$
+less $AD$. Find the length of the curve traced by $P$ from $A$ to $B$, without
+series.
+
+\prob{c-trapezoid}{The trapezoid in the hyperbola}{after Q1271, by A.~Nesbit}
+A hyperbola has transverse axis 120\,m. At 40\,m from its vertex, a double ordinate is
+96\,m long. Inscribe in the hyperbola the largest trapezoid that has this double ordinate
+as one of its parallel sides and another double ordinate as the other.
+
+\prob{c-cone}{The path on the turning triangle}{Q1296, by George Ducket}
+A right-angled triangle $ABC$ has hypotenuse $AC = 6$\,ft and $BC = 3$\,ft at right
+angles to the base $AB$. It turns once about $AB$, steadily, while a body moves steadily
+along $AC$ from $A$ to $C$ in the same time. How long is the body's path?
+
+\prob{c-sisyphus}{Sisyphus's stone}{prize question for 1747, by Samuel Bamfield}
+Sisyphus's stone is a cylinder 2\,ft across. He rolls it straight up a hemispherical
+mountain half a mile high, and straight down again. How far does a spot on the rim of
+the stone travel?
+
+\prob{c-tangents}{Tangents to an ellipse}{Q1142, by Olinthus Gregory}
+A polygon $ABCDEF$ is drawn round an ellipse, its sides touching the ellipse at $a, b, c,
+d, e, f$. Show that the products of alternate segments of the sides are equal:
+\[Aa\cdot Bb\cdot Cc\cdot Dd\cdot Ee\cdot Ff = aB\cdot bC\cdot cD\cdot dE\cdot eF\cdot fA.\]
+
+%================ NUMBERS ================
+\band{bandpurple}{Numbers}{}
+
+\prob{n-coins}{Counting the solutions}{Q267, by John Powle}
+In how many ways can $35x + 43y + 55z = 4000$ be solved in positive whole numbers?
+
+\prob{n-landen}{The charming brisk maid}{Q279, by John Landen}
+Leybourn prints it as the Diary did:
+\begin{center}\itshape
+A charming brisk maid has assur'd me and said,\\
+Since I'm such a fine mathematician,\\
+(Laying puzzling aside, for the joys of a bride)\\
+She will wed me---but on this condition:\\
+That I first shall unfold what pieces of gold\\
+Her father has for her in store:\\
+And these I must find from the data subjoin'd,\\
+And then I'm to puzzle no more.
+\end{center}
+The pieces are half guineas (10s~6d), guineas (21s), moidores (27s) and three-pound-twelves
+(72s), 4,000 in all. If there are $v$, $x$, $y$ and $z$ of each, $v^4x^3y^2z$ is as large
+as it can be. What is the lady's fortune?
+
+%================ EARTH ================
+\band{bandpurple}{The Earth}{}
+
+\prob{e-moon}{If the Moon stood still}{Q1094, by T.~Swanwick}
+If the Moon lost its motion and fell straight to the Earth, how long would it take? Take
+the Earth's radius as 3,965 miles, the Moon's distance as 60 radii, and gravity at the
+surface as $32\tfrac16$ feet per second per second.
+
+\prob{e-plumb}{The plumb line and the ground}{Q1154, by William Wiseman}
+Take the Earth to be an oblate spheroid with axes in the ratio 230 to 229. A plumb line
+points to the centre; the ground is level at right angles to the normal. In what latitude
+is the angle between the line to the centre and the normal greatest, and how large is it?
+
+\prob{e-degree}{One degree against two}{Q1220, by William Wright}
+On the same spheroid, in what latitude is a degree of the meridian as long as two degrees
+of longitude?
+
+\prob{e-density}{The density of the Earth}{Q1279, by James North}
+Charles Hutton had found that the Earth's mean density is about $\tfrac95$ of the density
+of the rocks at its surface. Suppose the density at distance $r$ from the centre varies as
+$r^n$. Find $n$.
+
+%================ MOTION ================
+\band{bandpurple}{Motion and force}{}
+
+\prob{m-pendulum}{A pendulum that counts itself}{Q10}
+Find the length of a pendulum that makes as many swings in a minute as it is inches long.
+The seconds pendulum is 39.2 inches.
+
+\prob{m-clock}{The clockmaker's pendulum}{Q1110, by William Francis, junior}
+A clockmaker fits a new pendulum to an old clock, which then gains 5 minutes in 12 hours.
+He lengthens the pendulum by 2 inches, and now it loses 5 seconds an hour. What is the
+right length, and how many swings does it make a minute? Take the seconds pendulum as
+$39\tfrac18$ inches.
+
+\prob{m-conical}{The conical pendulum}{Q276, by John Landen}
+A pendulum swings round in a cone whose height is 200 inches. Find the time of one
+revolution.
+
+\prob{m-balls}{Three elastic balls}{Q243, by John Powle}
+Three perfectly elastic balls $A$, $B$, $C$ lie in a line. $A$ weighs 3\,lb and $C$ 27\,lb.
+$A$ strikes $B$, which then strikes $C$. What must $B$ weigh for $C$ to move as fast as
+possible?
+
+\prob{m-chain}{The hanging chain}{Q244, by John Turner}
+A chain 18 inches long hangs from two pins 12 inches apart on the same level. How far
+below the pins is its lowest point, and what area lies between the chain and the line of
+the pins?
+
+\prob{m-table}{The chain on the table}{Q1282, by W.~G.~Horner}
+A chain 67 inches long hangs from a point 40 inches above a table, the rest lying
+straight on the table. A loose piece of the same chain only starts to slide when the
+table is tilted to $16^\circ40'$. How much chain lies on the table when it is in
+equilibrium, with as little as possible hanging?
+
+\prob{m-stick}{Where to strike}{Q284, by Cuthbert Cockson}
+A man swings a uniform stick 50 inches long, his arm 20 inches long, turning about the
+shoulder. With what part of the stick should he strike to give the greatest blow?
+
+\prob{m-rolling}{The rolling ball}{Q1172, by the Rev.~J.~Furnass}
+A lead ball is dragged up a plane inclined at $30^\circ$ to the top, 50 yards high. The
+chain breaks and the ball rolls down without slipping. How long does it take, and how fast
+is it going at the bottom?
+
+\prob{m-wheel}{The trundled wheel}{Q1143, by Peter Barlow}
+A wheel 5 feet across is rolled half a turn along level ground and back again, four times a
+minute, for a year of 365 days. At the start of each roll two points of its rim are level
+with the centre. How much farther does one of them travel than the other in the year?
+
+\prob{m-chords}{Two balls, two planes}{Q1293, by William Burdon}
+Two straight planes meet at a point, inclined to each other at $15^\circ$. Two balls are
+let go together from that point, one down each. When one is exactly above the other they
+are 50 feet apart. Find the inclination of each plane to the horizon, and the time.
+
+\prob{m-descent}{Quickest and longest descent}{Q1102 and Q1144, by J.~G.}
+(a) Two circles lie in a vertical plane, one wholly above the other. Find the straight
+line down which a body slides from the upper circle to the lower in the least time.
+(b) A point lies above a circle. Find the straight line from the point to the circle down
+which a body takes the longest time.
+
+\prob{m-over}{Over the top}{Q1222, by William Moore}
+A body is sent up an inclined plane with a given speed, and flies off the top. The base
+of the plane is given. At what inclination does it land farthest beyond the foot of the
+plane? Take the base as 3 and the height due to the speed as 10.
+
+\prob{m-quadrant}{Drawn up the quadrant}{prize question for 1810, by R.~B.}
+$AB$ and $AC$ are equal lines 10 feet long, $AB$ horizontal and $AC$ vertical, and $BC$ is
+a quarter circle with centre $A$. A string passes freely over a pulley at $C$. A 9\,lb
+weight hangs from one end; the other end is tied to a 1\,lb weight at $B$, which is
+drawn up the arc to $C$. Find its speed on arriving, and the time taken.
+
+\prob{m-ring}{The ring on the turning Earth}{Q1162, by J.~Skewes}
+A slender rod 500 miles long stands upright in latitude $50^\circ$, turning with the
+Earth once in 24 hours. A heavy ring slides down it from the top. Taking gravity as
+constant, how long does it take? Take the Earth's radius as 3,980 miles.
+
+\prob{m-cork}{The falling cork}{Q1098, by Mrs Macdonald}
+A cork ball falls from a great height through air of uniform density and settles to a
+steady 10 feet per second. The specific gravities of cork and air are 240 and
+$1\tfrac29$. How large is the ball? Take the air's resistance to equal the weight of a
+column of air as wide as the ball and half as tall as the height from which a body must
+fall to gain its speed. This is Newton's law, which the Diary used.
+
+\prob{m-vessel}{The vessel that empties}{Q1127, by William Burdon}
+A vessel is a frustum of a cone 36 inches deep, 50 inches across the top and 40 across
+the bottom, full of water. It empties through a hole half an inch across in the bottom,
+and the issuing stream contracts to two-thirds of the hole. How long does it take? If
+it stood on its wide end, how wide a hole would empty it in the same time?
+
+\prob{m-wall}{The ball against the wall}{Q1297, by Omicron}
+Where must a person stand, in a vertical plane at right angles to a wall, so that a
+perfectly elastic ball thrown against a given point of the wall, striking it with a given
+speed, comes back to them?
+
+\prob{m-vernon}{Admiral Vernon's chase}{prize question for 1742, by Robert Heath}
+Admiral Vernon, sailing due south from Jamaica towards Cartagena, sees a Spanish ship
+dead ahead, 7 leagues off, steering due west along the shore. He keeps his bow pointed
+straight at it all the way. When he catches it, the Spaniard has sailed 8 leagues. Both
+ships keep a steady speed. How far has Vernon sailed?
+
+%================ ANSWERS ================
+\clearpage
+\section*{Answers}
+
+\subsection*{Curves and solids}
+\ans{c-conoid}{With the hyperbola $y^2 = \tfrac pa(ax + x^2)$, the conoid is
+$\pi\tfrac pa\bigl(\tfrac{ax^2}2 + \tfrac{x^3}3\bigr)$ and the cylinder
+$\pi\tfrac pa(ax+x^2)x$. Their ratio is $\tfrac a2 + \tfrac x3$ to $a + x$, or
+$(3a + 2x) : 6(a+x)$. It is not fixed: it runs from $\tfrac12$, like the paraboloid, near
+the vertex, down towards $\tfrac13$, like the cone, far from it.}
+\ans{c-road}{About 346\,m. The road meets every straight line from the summit at the
+same angle, so when the cone is unrolled it becomes a logarithmic spiral, halving its
+distance from the summit in one turn. The road rises 266.7\,m, so the hill is 533.3\,m
+high. Solving for the radius that makes the spiral 1,600\,m long gives $r \approx 346.0$\,m
+and a slant side of about 635.7\,m. In the Diary, with a road of one mile, the radius was
+1141.75 feet.}
+\ans{c-pond}{In polar coordinates about $P$, measuring $\theta$ from $AB$, $PR = a\cos\theta$
+and $PS = PR\cos\theta = a\cos^2\theta$. The pond is two ovals, and its area is
+$\tfrac12\int_0^{2\pi}a^2\cos^4\theta\,d\theta = \tfrac{3\pi}8a^2$. For 12 hectares
+$a \approx 319.2$\,m. The half-width $a\cos^2\theta\sin\theta$ is greatest when
+$\tan\theta = 1/\sqrt2$, giving $2a/(3\sqrt3)\approx122.8$\,m.}
+\ans{c-bryhon}{The chord from $A$ is $\sqrt{dx}$, so the fence is $\sqrt{dx}-x$ from the
+diameter. The area between them is $\int_0^d(\sqrt{dx}-x)\,dx = \tfrac{d^2}6$. The son's
+excess is twice this, 6 hectares, so $d^2 = 18$ hectares and the field is
+$\tfrac\pi4\cdot18 \approx 14.1$ hectares. The answer printed in the Diary is by Mrs
+Elizabeth Bryhon of Helmsley.}
+\ans{c-quadratrix}{About 26.16\,m$^2$, with sides 6.03\,m along $CA$ and 4.34\,m along
+$CB$. If $z$ is the angle the moving radius makes with $CA$ at the corner, the condition
+for the greatest rectangle reduces to: the length of the arc complementary to $z$ equals
+$2\tan z/\sec^2 z$. This gives $z \approx 35^\circ42'$.}
+\ans{c-dotchen}{With $AD = x$, $DP = \sqrt{ax}-x$, and the curve is an arc of a parabola.
+For $a = 1$ the length is
+\[\tfrac18 + \tfrac{3\sqrt5}8 + \tfrac{\sqrt2}{16}\bigl(\sinh^{-1}3 + \ln(1+\sqrt2)\bigr)
+\approx 1.20216.\]
+So the whole curve is $1.20216\,a$.}
+\ans{c-trapezoid}{The conjugate axis is 72\,m. With $x$ measured from the centre, the
+other double ordinate is $2\cdot\tfrac{36}{60}\sqrt{x^2-60^2}$ and the trapezoid has area
+$\bigl(48 + \tfrac35\sqrt{x^2-3600}\bigr)(100 - x)$. This is greatest at $x \approx 64.07$,
+giving about 2,209.1\,m$^2$.}
+\ans{c-cone}{About 11.67\,ft. At distance $s$ along $AC$ the body is $s/2$ from the axis
+and turns through $2\pi s/6$, so the path has element $\sqrt{1 + (\pi s/6)^2}\,ds$.
+Integrating from 0 to 6 gives 11.669.}
+\ans{c-sisyphus}{Each turn of the stone draws one arch of an epicycloid, of length
+$8r(R+r)/R$ with $r = 1$\,ft and $R = 2640$\,ft: 8.003 feet. Going up the quarter circle
+of the mountain the stone turns $R/4r = 660$ times, and as often coming down. So the spot
+travels $1320 \times 8.003 \approx 10{,}564$ feet, just over 2 miles. This is John Landen's
+answer.}
+\ans{c-tangents}{Draw semi-diameters parallel to each side. The two tangent segments from
+any vertex are in the ratio of the semi-diameters parallel to them. Multiply the six
+ratios together; every semi-diameter appears once above and once below the line, so the
+product of the ratios is 1.}
+
+\subsection*{Numbers}
+\ans{n-coins}{89. The Diary's solver fixed $z$ and solved the two-variable equation
+each time. Peter Barlow later gave a general count for such equations; it is printed in
+the appendix to Leybourn's volume~IV.}
+\ans{n-landen}{A product $v^4x^3y^2z$ with a fixed sum is greatest when the numbers are in
+proportion to the powers: 1,600, 1,200, 800 and 400. That is \pounds840, \pounds1,260,
+\pounds1,080 and \pounds1,440, a fortune of \pounds4,620, as the printed answer says. The
+powers are garbled in the source text. We have restored them as 4, 3, 2 and 1, which is
+the only simple choice that gives \pounds4,620.}
+
+\subsection*{The Earth}
+\ans{e-moon}{The fall from $r_0$ to the surface $R$ under an inverse-square pull
+$gR^2/r^2$ takes
+\[t = \sqrt{\frac{r_0^3}{2gR^2}}\Bigl(\sqrt{x(1-x)} + \cos^{-1}\sqrt x\Bigr),
+\qquad x = R/r_0.\]
+With the Diary's figures this is about 416{,}070 seconds, or 4 days 19 hours 34 minutes.
+The Diary's solvers, working from Hutton's textbook, printed 4 days 19 hours 46 minutes.
+We have not traced the twelve minutes.}
+\ans{e-plumb}{For axes $a$ and $b$ the angle is greatest where $\tan\phi = a/b$, and there
+its tangent is $\tfrac{a^2-b^2}{2ab}$. For 230 to 229 this is about $14'58''$, in latitude
+$45^\circ7\tfrac12'$.}
+\ans{e-degree}{About $60^\circ4'$. A degree of the meridian is proportional to the
+meridian's radius of curvature $M$, and a degree of longitude to $N\cos\phi$, the radius
+of the parallel. Solving $M = 2N\cos\phi$ gives a latitude a little above $60^\circ$, the
+answer for a sphere.}
+\ans{e-density}{The mean density of a ball whose density is $\rho_0(r/R)^n$ is
+$\tfrac3{n+3}\rho_0$. Setting $\tfrac3{n+3} = \tfrac95$ gives $n = -\tfrac43$: the density
+falls off inversely as the $\tfrac43$ power of the distance from the centre.}
+
+\subsection*{Motion and force}
+\ans{m-pendulum}{The number of swings a minute is $60\sqrt{39.2/L}$. Setting this equal to
+$L$ gives $L^3 = 3600\times39.2 = 141{,}120$, so $L \approx 52.063$ inches. Almost a
+century later the Diary set it again, as Q1089, with the seconds pendulum at
+$39\tfrac18$ inches, and the answer came out 52.030.}
+\ans{m-clock}{The swings per hour were first as 3,625 to 3,600, and after lengthening as
+3,595 to 3,600. Lengths go as the inverse squares of the swings, so $L_1 + 2 =
+L_1(3625/3595)^2$, giving $L_1\approx119.34$ inches. The right length is
+$L_1(3625/3600)^2\approx121.00$ inches, which swings about 34.12 times a minute. This is
+Peter Barlow's answer.}
+\ans{m-conical}{The time of one revolution is $2\pi\sqrt{h/g}$, which depends only on the
+height of the cone: $2\pi\sqrt{200/386}\approx4.52$ seconds.}
+\ans{m-balls}{9\,lb, the mean proportional between 3 and 27. $B$ leaves the first impact
+with speed $\tfrac{2A}{A+B}u$, and $C$ leaves the second with
+$\tfrac{2A}{A+B}\cdot\tfrac{2B}{B+C}u$. This is greatest when $B^2 = AC$. John Landen
+answered it.}
+\ans{m-chain}{The chain is a catenary $y = c\cosh(x/c)$ with $2c\sinh(6/c) = 18$, so
+$c\approx3.699$ inches. The lowest point is $c(\cosh(6/c)-1)\approx6.03$ inches below the
+pins. The area between chain and line is $12(c + \text{sag}) - 18c \approx 50.2$ square
+inches.}
+\ans{m-table}{About 21.1 inches lies on the table and 45.9 inches hangs. The friction on
+the lying part, $\mu$ times its weight with $\mu = \tan16^\circ40'$, must equal the
+horizontal tension at the bottom of the catenary. The catenary through the support with
+that tension gives the equation
+$x = l + \mu h - \sqrt{h^2\sec^2 16^\circ40' + 2\mu lh}$, with $l = 67$ and
+$h = 40$.}
+\ans{m-stick}{The centre of percussion of the stick about the shoulder is at
+$\tfrac{2(a^2+ab+b^2)}{3(a+b)}$ from the shoulder, with $a = 70$ and $b = 20$: 49.63 inches.
+That is 29.63 inches from the hand, or 20.37 inches from the far end.}
+\ans{m-rolling}{A rolling sphere accelerates at $\tfrac57g\sin\theta$ rather than
+$g\sin\theta$. The plane is 300\,ft long, so the time is 7.23 seconds and the final speed
+83.0\,ft per second.}
+\ans{m-wheel}{In half a turn one point rises over the top and down along one arch of a
+cycloid, while the other passes under the centre. Their paths are $10\sqrt2$ and
+$20 - 10\sqrt2$\,ft, differing by $20(\sqrt2-1)\approx8.284$\,ft. Eight such motions a
+minute for a year gives about 34.83 million feet, or 6,597 miles.}
+\ans{m-chords}{A body slides down any chord from the top of a vertical circle in the same
+time it falls down the diameter. So the balls are always on one circle through the point,
+and the 50\,ft between them is a chord subtending $15^\circ$ at the circumference. The
+circle's diameter is $25/\sin15^\circ\approx193.2$\,ft. The planes are inclined at
+$37^\circ30'$ and $52^\circ30'$, and the time is that of falling 193.2\,ft, about 3.47
+seconds.}
+\ans{m-descent}{(a) Join the top of the upper circle to the bottom of the lower one. The
+part of this line between the two circles is the required line. (b) Join the point to the
+top of the circle and produce the line to meet the circle again. The whole line is the
+longest descent. Both rest on the fact that the chords of a vertical circle from its top
+point are all descended in the same time.}
+\ans{m-over}{About $36^\circ39'$. Llerien set the problem again as the prize question for
+1814, asking for a construction. Let $B$ be the foot of the base $AB$ and erect $BD$
+equal to the height due to the speed. Join $AD$, and on $AB$ produced take $AS = AD$. Let
+$M$ bisect $DS$, and let $AM$ meet $BD$ at $C$. $AC$ is the plane. The body's parabola then has its focus at $S$.}
+\ans{m-quadrant}{The descending weight falls the chord $10\sqrt2$\,ft while the other rises
+10\,ft, and at $C$ both move at the same speed. So $10v^2/2 = g(9\cdot10\sqrt2 - 10)$,
+giving $v\approx27.5$\,ft per second. The time, found by integrating numerically, is
+about 1.08 seconds. The Diary gave the speed and left the time as an unfinished
+fluxion.}
+\ans{m-ring}{About 405.5 seconds, or 6 minutes 45 seconds. The acceleration along the rod
+is $-g + \omega^2(R+s)\cos^2\lambda$, which slows the fall slightly. Without the turning the
+fall would take about 405.1 seconds. The Diary gave 405.9.}
+\ans{m-cork}{In steady fall the weight
+$\tfrac{\pi}{6}d^3(240 - 1\tfrac29)$ equals the resistance
+$\tfrac{\pi d^2}4\cdot1\tfrac29\cdot\tfrac{v^2}{4g}$. This gives $d\approx0.0060$\,ft, about
+$\tfrac1{14}$ inch or 1.8\,mm. A modern drag law would give a different size. The
+answer is the Diary's, on the Diary's assumptions.}
+\ans{m-vessel}{The Diary took the stream's speed to be that due to half the depth. On that
+assumption it empties in 1 hour 55 minutes, and inverted it needs a hole 0.538 inches
+across. With Torricelli's law, the speed due to the full depth, the time is 1 hour 21
+minutes. The hole for the inverted vessel is the same either way, because only the ratio
+of times matters.}
+\ans{m-wall}{With a vertical wall, a ball that comes back to the thrower must strike the
+wall square, moving horizontally, and return along the same parabola. So the person may
+stand anywhere on the parabola whose vertex is the given point, with its axis vertical
+and its latus rectum four times the height due to the given speed.}
+\ans{m-vernon}{About 12.23 leagues. In a chase of this kind, with the target moving at
+right angles to the first line of sight at distance $a$ and the pursuer $n$ times as fast,
+the target runs $b = \tfrac{an}{n^2-1}$. So $8(n^2-1) = 7n$, $n\approx1.529$, and Vernon
+sails $nb\approx12.232$ leagues. This was Merones's answer: William Emerson's.}
+
+\begin{diarynote}{When the Diary was wrong}
+\textbf{Problem~\ref{m-pendulum}.} The Diary printed the answer to twenty decimal places:
+52.063039916251851082. The true value is 52.063039916251850800\dots, so the last four
+figures are wrong.
+
+\textbf{Problem~\ref{m-vernon}.} Two solvers disagreed. Merones had 12.2321 leagues, which
+is right. Mr Powle had 12.2894.
+
+\textbf{Problem~\ref{m-clock}.} The solvers gave three different lengths: 119.34, 118.67 and
+119.5 inches. Only Barlow's first figure is right. The others mis-counted the swings in an
+hour.
+
+\textbf{Problem~\ref{m-wall}.} Omicron's printed answer is a circle. It treats the ball as
+flying straight to the wall and then falling under gravity on the way back. With gravity
+acting both ways, the locus is the parabola given here.
+
+\textbf{Problem~\ref{e-degree}.} The Diary gave $60^\circ13'$. We make it about $60^\circ4'$,
+with the ellipse the question gives.
+
+\textbf{Problem~\ref{m-conical}.} Mr Ash's printed solution used a rule that holds only for
+one particular angle of the cone, as Leybourn's note says. His number is right, because
+the true time depends only on the height.
+\end{diarynote}
+
+\begin{diarynote}{Where the Diary simply worked differently}
+\textbf{Problem~\ref{m-vessel}.} The half-depth rule for the speed of water leaving a vessel
+was Newton's first view and appears in Hutton's textbooks. It is not a slip.
+
+\textbf{Problem~\ref{m-cork}.} Newton's law of resistance is not the modern one. The
+question is kept for its method and its setter: it is the only question in volume~IV
+that carries a woman's name.
+
+\textbf{Problem~\ref{e-moon}.} Our time differs from the Diary's by twelve minutes, and we
+do not know why.
+\end{diarynote}
+
+\end{document}
